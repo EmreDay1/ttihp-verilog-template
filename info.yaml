@@ -1,47 +1,41 @@
-# Tiny Tapeout project information
 project:
-  title: LED Pattern Generator
-  author: Emre Dayangac
-  discord: logical
-  description: description: "A programmable LED pattern generator with four selectable modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns."
-  language: Verilog
+  title: "LED Pattern Generator"
+  author: "Emre Dayangac"
+  discord: "logical"
+  description: "A programmable LED pattern generator with four selectable modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns."
+  language: "Verilog"
   clock_hz: 10000
-  tiles: 1x1
-  top_module: tt_um_LED_Pattern_Generator
+  tiles: "1x1"
+  top_module: "tt_um_LED_Pattern_Generator"
   source_files:
-    - src/project.v
+    - "src/project.v"
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
-  # Inputs
-  ui[0]: mode[0]
-  ui[1]: mode[1]
-  ui[2]: unused
-  ui[3]: unused
-  ui[4]: unused
-  ui[5]: unused
-  ui[6]: unused
-  ui[7]: unused
+  ui[0]: "mode[0]"
+  ui[1]: "mode[1]"
+  ui[2]: "unused"
+  ui[3]: "unused"
+  ui[4]: "unused"
+  ui[5]: "unused"
+  ui[6]: "unused"
+  ui[7]: "unused"
 
-  # Outputs
-  uo[0]: led[0]
-  uo[1]: led[1]
-  uo[2]: led[2]
-  uo[3]: led[3]
-  uo[4]: led[4]
-  uo[5]: led[5]
-  uo[6]: led[6]
-  uo[7]: led[7]
+  uo[0]: "led[0]"
+  uo[1]: "led[1]"
+  uo[2]: "led[2]"
+  uo[3]: "led[3]"
+  uo[4]: "led[4]"
+  uo[5]: "led[5]"
+  uo[6]: "led[6]"
+  uo[7]: "led[7]"
 
-  # Bidirectional pins
-  uio[0]: unused
-  uio[1]: unused
-  uio[2]: unused
-  uio[3]: unused
-  uio[4]: unused
-  uio[5]: unused
-  uio[6]: unused
-  uio[7]: unused
+  uio[0]: "unused"
+  uio[1]: "unused"
+  uio[2]: "unused"
+  uio[3]: "unused"
+  uio[4]: "unused"
+  uio[5]: "unused"
+  uio[6]: "unused"
+  uio[7]: "unused"
 
-# Do not change!
 yaml_version: 6
