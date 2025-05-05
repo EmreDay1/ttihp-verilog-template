@@ -30,7 +30,7 @@ how_to_test: |
 
 # Pin definitions
 pinout:
-  # Inputs
+  ## Inputs
   ui[0]: "mode[0]"
   ui[1]: "mode[1]"
   ui[2]: "none"
@@ -40,7 +40,7 @@ pinout:
   ui[6]: "none"
   ui[7]: "none"
 
-  # Outputs
+  ## Outputs
   uo[0]: "led[0]"
   uo[1]: "led[1]"
   uo[2]: "led[2]"
@@ -50,7 +50,7 @@ pinout:
   uo[6]: "led[6]"
   uo[7]: "led[7]"
 
-  # Bidirectional (not used)
+  ## Bidirectional (not used)
   uio[0]: "none"
   uio[1]: "none"
   uio[2]: "none"
