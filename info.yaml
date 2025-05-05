@@ -1,40 +1,20 @@
-# Project information
+# Tiny Tapeout project information
 project:
-  title: "LED Pattern Generator"
-  author: "Emre Dayangac"
-  description: "A programmable LED pattern generator with four distinct modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns"
-  language: "Verilog"
+  title: "LED Pattern Generator"  # Project title
+  author: "Emre Dayangac"             # Your name
+  discord: "logical"                     # Your discord username (optional)
+  description: "A programmable LED pattern generator with four selectable modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns."
+  language: "Verilog"             # Language used
+  clock_hz: 10000                 # Clock frequency in Hz
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"                    # Using just one tile
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module: "LED_Pattern_Generator"
+  # List your project's source files here.
   source_files:
     - "project.v"
-  top_module: "LED_Pattern_Generator"
 
-# Project documentation
-documentation: 
-  author: "Emre Dayangac"
-  title: "LED Pattern Generator"
-  description: "A programmable LED pattern generator with multiple visual patterns"
-
-# How the project works
-how_it_works: |
-  This design generates four different LED patterns based on the selected mode:
-  
-  Mode 00: Binary Counter - Counts up in binary with 8-bit output
-  Mode 01: Knight Rider - Shifting pattern that bounces back and forth
-  Mode 02: Pseudo-Random - Uses an 8-bit LFSR with taps at bits 7,5,4,3
-  Mode 03: Alternating - Toggles between two complementary patterns (0x55/0xAA)
-  
-  The design uses a synchronous state machine with an internal counter for timing.
-  Pattern updates occur at regular intervals determined by the clock frequency.
-
-# How to test the project
-how_to_test: |
-  1. Connect 8 LEDs with current-limiting resistors (220Ω) to the output pins
-  2. Connect two switches or jumpers to the mode selection pins (inputs 0 and 1)
-  3. Apply clock and reset signals
-  4. Toggle mode switches to select between the four pattern modes
-  5. Observe the LED patterns changing according to the selected mode
-
-# Pin definitions
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
   ui[0]: "mode[0]"
@@ -56,7 +36,7 @@ pinout:
   uo[6]: "led[6]"
   uo[7]: "led[7]"
 
-  # Bidirectional (not used)
+  # Bidirectional pins
   uio[0]: "unused"
   uio[1]: "unused"
   uio[2]: "unused"
@@ -66,14 +46,5 @@ pinout:
   uio[6]: "unused"
   uio[7]: "unused"
 
-# Optional clock frequency (in Hz)
-clock_hz: 10000
-
-# Additional tags
-tags:
-  - led
-  - pattern
-  - educational
-
-# Do not change
+# Do not change!
 yaml_version: 6
