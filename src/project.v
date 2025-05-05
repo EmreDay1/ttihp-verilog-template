@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-module LED_Pattern_Generator (
+module tt_um_LED_Pattern_Generator (
     input  wire [7:0] inputs,      // General inputs
     output wire [7:0] led_outputs, // LED outputs
     input  wire [7:0] unused_in,   // Unused inputs
