@@ -1,38 +1,97 @@
-`default_nettype none
-`timescale 1ns / 1ps
+// Testbench for LED Pattern Generator
+`timescale 1ns/1ps
 
-/* This testbench just instantiates the module and makes some convenient wires
-   that can be driven / tested by the cocotb test.py.
-*/
-module tb ();
-
-  // Dump the signals to a VCD file. You can view it with gtkwave or surfer.
-  initial begin
-    $dumpfile("tb.vcd");
-    $dumpvars(0, tb);
-    #1;
-  end
-
-  // Wire up the inputs and outputs:
-  reg clk;
-  reg rst_n;
-  reg ena;
-  reg [7:0] ui_in;
-  reg [7:0] uio_in;
-  wire [7:0] uo_out;
-  wire [7:0] uio_out;
-  wire [7:0] uio_oe;
-
-  // Replace tt_um_example with your module name:
-  tt_um_example user_project (
-      .ui_in  (ui_in),    // Dedicated inputs
-      .uo_out (uo_out),   // Dedicated outputs
-      .uio_in (uio_in),   // IOs: Input path
-      .uio_out(uio_out),  // IOs: Output path
-      .uio_oe (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
-      .ena    (ena),      // enable - goes high when design is selected
-      .clk    (clk),      // clock
-      .rst_n  (rst_n)     // not reset
-  );
-
+module tb_LED_Pattern_Generator();
+    // Testbench signals
+    reg clock;
+    reg reset_n;
+    reg enable;
+    reg [7:0] inputs;
+    reg [7:0] unused_in;
+    wire [7:0] led_outputs;
+    wire [7:0] unused_out;
+    wire [7:0] io_enable;
+    
+    // Instantiate the Device Under Test (DUT)
+    LED_Pattern_Generator dut (
+        .clock(clock),
+        .reset_n(reset_n),
+        .enable(enable),
+        .inputs(inputs),
+        .unused_in(unused_in),
+        .led_outputs(led_outputs),
+        .unused_out(unused_out),
+        .io_enable(io_enable)
+    );
+    
+    // Clock generation (100MHz)
+    always begin
+        #5 clock = ~clock;  // 10ns period (100MHz)
+    end
+    
+    // Test sequence
+    initial begin
+        // Initialize signals
+        clock = 0;
+        reset_n = 0;      // Start in reset
+        enable = 1;        // Module enabled
+        inputs = 8'h00;    // Mode 0 initially
+        unused_in = 8'h00; // Not used
+        
+        // Dump waveforms to file
+        $dumpfile("led_pattern_generator.vcd");
+        $dumpvars(0, tb_LED_Pattern_Generator);
+        
+        // Release reset after 100ns
+        #100 reset_n = 1;
+        
+        // Test Mode 0 (Binary Counter)
+        inputs = 8'h00;
+        $display("Testing Mode 0: Binary Counter Pattern");
+        repeat(100) begin
+            @(posedge clock);
+            if (led_outputs != 0) $display("Time: %t, Mode: %d, Output changed to: %b", 
+                                         $time, inputs[1:0], led_outputs);
+        end
+        
+        // Test Mode 1 (Knight Rider Pattern)
+        inputs = 8'h01;
+        $display("Testing Mode 1: Knight Rider Scanning Pattern");
+        repeat(100) begin
+            @(posedge clock);
+            if (led_outputs != 0) $display("Time: %t, Mode: %d, Output changed to: %b", 
+                                         $time, inputs[1:0], led_outputs);
+        end
+        
+        // Test Mode 2 (Random Pattern)
+        inputs = 8'h02;
+        $display("Testing Mode 2: Pseudo-Random Pattern");
+        repeat(100) begin
+            @(posedge clock);
+            if (led_outputs != 0) $display("Time: %t, Mode: %d, Output changed to: %b", 
+                                         $time, inputs[1:0], led_outputs);
+        end
+        
+        // Test Mode 3 (Alternating Pattern)
+        inputs = 8'h03;
+        $display("Testing Mode 3: Alternating Pattern");
+        repeat(100) begin
+            @(posedge clock);
+            if (led_outputs != 0) $display("Time: %t, Mode: %d, Output changed to: %b", 
+                                         $time, inputs[1:0], led_outputs);
+        end
+        
+        // End simulation
+        $display("Simulation complete");
+        $finish;
+    end
+    
+    // Monitor only when outputs change
+    reg [7:0] last_out = 0;
+    always @(posedge clock) begin
+        if (led_outputs != last_out) begin
+            $display("Time: %t, Mode: %d, Output: %b", $time, inputs[1:0], led_outputs);
+            last_out = led_outputs;
+        end
+    end
 endmodule
