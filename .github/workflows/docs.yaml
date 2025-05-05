@@ -7,6 +7,9 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-24.04
+    permissions:
+      pages: write       # needed for Pages deployment
+      id-token: write    # needed for secure artifact upload
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -16,3 +19,13 @@ jobs:
       - name: Build docs
         uses: TinyTapeout/tt-gds-action/docs@ttihp25b
 
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./docs/_site
+          name: docs-pages  # 🛠️ custom name to avoid conflict
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: docs-pages  # 🛠️ must match name above
