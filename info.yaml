@@ -3,7 +3,7 @@ project:
   title: LED Pattern Generator
   author: Emre Dayangac
   discord: logical
-  description: A programmable LED pattern generator with four selectable modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns.
+  description: description: "A programmable LED pattern generator with four selectable modes: binary counter, Knight Rider scanner, pseudo-random LFSR, and alternating patterns."
   language: Verilog
   clock_hz: 10000
   tiles: 1x1
