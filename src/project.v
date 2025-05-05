@@ -10,7 +10,7 @@ module tt_um_LED_Pattern_Generator (
     output wire [7:0] unused_out,  // Unused outputs
     output wire [7:0] io_enable,   // IO direction control
     input  wire       enable,      // System enable
-    input  wire       clock,       // System clock
+    input  wire       clk,         // System clock (REQUIRED NAME)
     input  wire       reset_n      // Active-low reset
 );
 
@@ -29,7 +29,7 @@ module tt_um_LED_Pattern_Generator (
     assign led_outputs = led_pattern;
     
     // Pattern generation state machine
-    always @(posedge clock or negedge reset_n) begin
+    always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
             // Reset state
             timing_counter <= 8'h0;
