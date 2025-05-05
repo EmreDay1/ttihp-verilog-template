@@ -9,7 +9,7 @@ module tt_um_LED_Pattern_Generator (
     input  wire [7:0] unused_in,   // Unused inputs
     output wire [7:0] unused_out,  // Unused outputs
     output wire [7:0] io_enable,   // IO direction control
-    input  wire       enable,      // System enable
+    input  wire       ena,      // System enable
     input  wire       clk,         // System clock (REQUIRED NAME)
     input  wire       reset_n      // Active-low reset
 );
@@ -34,7 +34,7 @@ module tt_um_LED_Pattern_Generator (
             // Reset state
             timing_counter <= 8'h0;
             led_pattern <= 8'h00;
-        end else if (enable) begin
+        end else if (ena) begin
             // Increment counter
             timing_counter <= timing_counter + 1;
             
